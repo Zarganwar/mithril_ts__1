@@ -2668,21 +2668,6 @@ var applicationZero =
 	    "use strict";
 	    var BlockView = (function () {
 	        function BlockView() {
-	            var _this = this;
-	            this.view = function () {
-	                return m('div', {
-	                    className: 'control',
-	                    //onmousemove: (e: MouseEvent) => this.move(e.x, e.y)
-	                    onclick: function (e) { return _this.start(); },
-	                    ondblclick: function (e) { return _this.stop(); }
-	                }, m('div', {
-	                    className: "block",
-	                    style: {
-	                        left: _this.x + 'px',
-	                        top: _this.y + 'px'
-	                    }
-	                }));
-	            };
 	            this.x = 0;
 	            this.y = 0;
 	        }
@@ -2699,6 +2684,21 @@ var applicationZero =
 	        };
 	        BlockView.prototype.stop = function () {
 	            clearInterval(this.timerToken);
+	        };
+	        BlockView.prototype.view = function () {
+	            var _this = this;
+	            return m('div', {
+	                className: 'control',
+	                onmousemove: function (e) { return _this.move(e.x, e.y); },
+	                onclick: function (e) { return _this.start(); },
+	                ondblclick: function (e) { return _this.stop(); }
+	            }, m('div', {
+	                className: "block",
+	                style: {
+	                    left: this.x + 'px',
+	                    top: this.y + 'px'
+	                }
+	            }));
 	        };
 	        return BlockView;
 	    }());

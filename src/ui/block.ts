@@ -29,10 +29,10 @@ export class BlockView {
         clearInterval(this.timerToken);
     }
 
-    view = () => {
+    view() {
         return m('div', {
                 className: 'control',
-                //onmousemove: (e: MouseEvent) => this.move(e.x, e.y)
+                onmousemove: (e: MouseEvent) => this.move(e.x, e.y),
                 onclick: (e: MouseEvent) => this.start(),
                 ondblclick: (e: MouseEvent) => this.stop(),
             },
@@ -45,8 +45,5 @@ export class BlockView {
                 }
             )
         );
-
-
-
     }
 }
